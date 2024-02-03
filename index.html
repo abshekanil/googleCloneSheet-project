@@ -10,7 +10,7 @@
   </head>
   <body>
     <section class="options">
-      <form class="form-container">
+      <form class="form-container" id="options-form">
         <select name="fontFamily">
           <option value="default">Default</option>
         </select>
@@ -30,7 +30,7 @@
         <div class="align-container fr-aic">
             
             <div>
-                <input type="radio" name="align" value="left" id="left" />
+                <input type="radio" name="align" checked value="left" id="left" />
                 <label for="left" class="material-icons">format_align_left</label>
             </div>
           
@@ -51,14 +51,14 @@
         </div>
 
         <div>
-            <input type="color" name="backgroundColor" id="bgColor" />
+            <input type="color" name="backgroundColor" id="bgColor" value="#ffffff" />
             <label for="bgColor" class="material-icons">format_color_fill</label>
         </div>
 
       </form>
       <div class="box fr-aic">
         <div class="selected-cell">NA</div>
-        <input type="text" placeholder="Evaluate Expression"/>
+        <input type="text" placeholder="Evaluate Expression" id="expression"/>
       </div>
     </section>
 
@@ -71,6 +71,6 @@
 
     <script src="./options.js"></script>
     <script src="./script.js"></script>
-    
+
   </body>
 </html>
