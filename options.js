@@ -4,6 +4,50 @@ const expressionInput = document.getElementById("expression");
 
 let selectedCell = null;
 
+const state = {};
+
+const defaultState = {
+    innerText : "",
+    isBold : false,
+    align : "left",
+    isUnderlined : false,
+    isItalic : false,
+    fontSize : "16",
+    fontFamily : "Sans Serif",
+    textColor : "#000000",
+    backgroundColor : "#ffffff"
+
+}
+
+function applyCellInfoToForm() {
+
+    if(state[selectedCell.id]) {
+        const data = state[selectedCell.id];
+        for(let key in data)
+        {
+            if(form[key].type === "checkbox")
+            {
+                form[key].checked = data[key];
+            }
+            else{
+                form[key].value = data[key];
+            }
+        }
+    } 
+    else {
+        form.reset();
+    }
+}
+
+function onChangeInnerText(){
+    if(state[selectedCell.id]){
+        state[selectedCell.id].innerText = selectedCell.innerText;
+    }
+    else{
+        state[selectedCell.id] = {...defaultState, innerText: selectedCell.innerText}
+    }
+}
+
  function onFocusCell(e) {
     if(selectedCell) {
         selectedCell.classList.remove("active-cell");
@@ -11,6 +55,7 @@ let selectedCell = null;
     selectedCell = e.target;
     activeCellElement.innerText = selectedCell.id;
     selectedCell.classList.add("active-cell");
+    applyCellInfoToForm();
 };
 
 function applyStylesToSelectedCell(styles){
@@ -43,7 +88,7 @@ form.addEventListener("change", function(){
         backgroundColor: form["backgroundColor"].value
 
     }
-
+    state[selectedCell.id] = {...formData, innerText: selectedCell.innerText};
     applyStylesToSelectedCell(formData);
 });
 
